@@ -26,6 +26,32 @@ $iOSVersion = '12.0'  # or newer version
 - targetSdkVersion: 35
 - compileSdkVersion: 35
 
+## How to use package
+Use this package as a library
+Depend on it
+Run this command:
+
+With Flutter:
+``` dart
+ $ flutter pub add eyeblinkdetectface
+```
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
+
+``` dart
+dependencies:
+  eyeblinkdetectface: ^1.0.1
+
+```
+Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
+
+Import it
+Now in your Dart code, you can use:
+``` dart
+import 'package:eyeblinkdetectface/eyeblinkdetectface.dart';
+
+```
+
 
 ## Example app
 
