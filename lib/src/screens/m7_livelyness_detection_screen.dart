@@ -1,5 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
-import 'dart:ui' as ui;
+
 import 'package:collection/collection.dart';
 import 'package:eyeblinkdetectface/index.dart';
 import 'package:eyeblinkdetectface/src/core/custom_painters/custom_overlay.dart';
