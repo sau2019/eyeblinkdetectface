@@ -13,10 +13,8 @@
 
 Your Podfile should look like this:
 
-```ruby
 platform :ios, '12.0'  # or newer version
 
-...
 
 # add this line:
 $iOSVersion = '12.0'  # or newer version
