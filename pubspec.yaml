@@ -1,6 +1,6 @@
 name: eyeblinkdetectface
 description: "RealTime Face Detection using Eye Blink, it is a extended implementation of m7liveliness detection"
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/sau2019/eyeblinkdetectface
 
 environment:

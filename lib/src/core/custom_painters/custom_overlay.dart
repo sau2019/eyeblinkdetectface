@@ -1,40 +1,43 @@
 import 'package:eyeblinkdetectface/index.dart';
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
 
 class OvalOverlayPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // White overlay paint
     final overlayPaint = Paint()
-      ..color = Colors.white // White overlay with opacity
+      ..color = Colors.white // Optional: Add opacity to see through
       ..style = PaintingStyle.fill;
 
     // Blue border paint
     final borderPaint = Paint()
-      ..color = Colors.green.shade400 // Blue border color
-      ..strokeWidth = 5.0 // Border thickness
-      ..style = PaintingStyle.stroke; // Stroke for border
+      ..color = Colors.red.shade400
+      ..strokeWidth = 5.0
+      ..style = PaintingStyle.stroke;
 
-    // Create the full screen white overlay
+    // Create the full-screen white overlay
     final path = Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    // Define the oval shape
-    final ovalRect = Rect.fromCenter(
+    // Define the circular face area
+    final double diameter = math.min(size.width, size.height) * 0.8;
+    final Rect circleRect = Rect.fromCenter(
       center: Offset(size.width / 2, size.height / 2),
-      width: size.width * 0.7, // Adjust size of the oval
-      height: size.height * 0.5,
+      width: diameter,
+      height: diameter,
     );
 
-    final ovalPath = Path()..addOval(ovalRect);
+    final Path circlePath = Path()..addOval(circleRect);
 
-    // Subtract the oval from the overlay
-    path.addPath(ovalPath, Offset.zero);
+    // Cut out the circle from the overlay
+    path.addPath(circlePath, Offset.zero);
     path.fillType = PathFillType.evenOdd;
 
     // Draw the overlay
     canvas.drawPath(path, overlayPaint);
 
-    // Draw the blue border
-    canvas.drawOval(ovalRect, borderPaint);
+    // Draw the blue circular border
+    canvas.drawOval(circleRect, borderPaint);
   }
 
   @override
