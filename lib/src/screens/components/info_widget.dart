@@ -2,8 +2,10 @@ import 'package:eyeblinkdetectface/index.dart';
 
 class M7LivelynessInfoWidget extends StatefulWidget {
   final VoidCallback onStartTap;
+  final M7DetectionConfig config;
   const M7LivelynessInfoWidget({
     required this.onStartTap,
+    required this.config,
     super.key,
   });
 
@@ -34,7 +36,7 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
             flex: 2,
           ),
           Text(
-            M7StringConstants.label.livelyNessDetection,
+            widget.config.m7stringConstants.label.livelyNessDetection,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.black,
@@ -46,7 +48,7 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
             height: 15,
           ),
           Text(
-            M7StringConstants.label.infoSubText,
+            widget.config.m7stringConstants.label.infoSubText,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.blueGrey,
@@ -101,9 +103,10 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
                           child: Container(
                             child: _buildPointWidget(
                               index: 1,
-                              title: M7StringConstants.label.goodLighting,
-                              subTitle:
-                                  M7StringConstants.label.goodLightingSubText,
+                              title: widget
+                                  .config.m7stringConstants.label.goodLighting,
+                              subTitle: widget.config.m7stringConstants.label
+                                  .goodLightingSubText,
                             ),
                           ),
                         ),
@@ -115,9 +118,10 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
                         child: Center(
                           child: _buildPointWidget(
                             index: 2,
-                            title: M7StringConstants.label.lookStraight,
-                            subTitle:
-                                M7StringConstants.label.lookStraightSubText,
+                            title: widget
+                                .config.m7stringConstants.label.lookStraight,
+                            subTitle: widget.config.m7stringConstants.label
+                                .lookStraightSubText,
                           ),
                         ),
                       ),
@@ -145,7 +149,7 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
                 ),
               ),
               child: Text(
-                M7StringConstants.button.start,
+                widget.config.m7stringConstants.button.start,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,

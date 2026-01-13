@@ -81,12 +81,36 @@ class _M7ExpampleScreenState extends State<M7ExpampleScreen> {
     final String? response = await Eyeblinkdetectface.instance.detectLivelyness(
       context,
       config: M7DetectionConfig(
-        steps: _veificationSteps,
-        startWithInfoScreen: _startWithInfo,
-        maxSecToDetect: _timeOutDuration == 100 ? 2500 : _timeOutDuration,
-        allowAfterMaxSec: _allowAfterTimeOut,
-        captureButtonColor: Colors.red,
-      ),
+          steps: _veificationSteps,
+          startWithInfoScreen: _startWithInfo,
+          maxSecToDetect: _timeOutDuration == 100 ? 2500 : _timeOutDuration,
+          allowAfterMaxSec: _allowAfterTimeOut,
+          captureButtonColor: Colors.red,
+          // customize with note point option
+
+          // m7stringConstants: M7StringConstants(
+          //   isNoteVisible: true, // default value is false,
+          //   label: M7LabelStrings(
+          //     noteText: "Custom text here" // if you don't pass value, it will show default string customized by sdk.
+
+          //   )
+          // )
+
+          // customize with info screen label option
+
+          //  m7stringConstants: M7StringConstants(
+          //     label: M7LabelStrings(
+          //       livelyNessDetection: "Custom text here",
+          //       infoSubText: "Custom text here",
+          //       goodLighting: "Custom text here",
+          //       goodLightingSubText: "Custom text here",
+          //       lookStraight: "Custom text here",
+          //       lookStraightSubText: "Custom text here",
+          //     )
+          //   )
+
+          //  default sdk option
+          m7stringConstants: M7StringConstants(label: M7LabelStrings())),
     );
     if (response == null) {
       return;
@@ -227,7 +251,7 @@ class _M7ExpampleScreenState extends State<M7ExpampleScreen> {
             child: const Text(
               "Detect Livelyness",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),

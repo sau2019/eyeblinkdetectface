@@ -30,12 +30,13 @@ class _MLivelyness7DetectionScreenState
   CameraController? _cameraController;
   int _cameraIndex = -1;
   double _currentZoomLevel = 1.0;
-  double _minAvailableZoom = 1.0;
-  double _maxAvailableZoom = 1.0;
-  double _minAvailableExposureOffset = 0.0;
-  double _maxAvailableExposureOffset = 0.0;
-  double _currentExposureOffset = 0.0;
-  final bool _changingCameraLens = false;
+  // double _minAvailableZoom = 1.0;
+  // double _maxAvailableZoom = 1.0;
+  // double _minAvailableExposureOffset = 0.0;
+  // double _maxAvailableExposureOffset = 0.0;
+  // double _currentExposureOffset = 0.0;
+  // final bool _changingCameraLens = false;
+
   CustomPaint? _customPaint;
 
   bool _isBusy = false;
@@ -45,7 +46,7 @@ class _MLivelyness7DetectionScreenState
   bool _didCloseEyes = false;
   bool _isTakingPicture = false;
   Timer? _timerToDetectFace;
-  bool _isCaptureButtonVisible = false;
+  // bool _isCaptureButtonVisible = false;
 
   late final List<M7LivelynessStepItem> _steps;
 
@@ -122,7 +123,7 @@ class _MLivelyness7DetectionScreenState
         _timerToDetectFace?.cancel();
         _timerToDetectFace = null;
         if (widget.config.allowAfterMaxSec) {
-          _isCaptureButtonVisible = true;
+          // _isCaptureButtonVisible = true;
           setState(() {});
           return;
         }
@@ -153,18 +154,19 @@ class _MLivelyness7DetectionScreenState
       _cameraController?.setZoomLevel(_currentZoomLevel);
       _cameraController?.getMinZoomLevel().then((value) {
         _currentZoomLevel = value;
-        _minAvailableZoom = value;
+        // _minAvailableZoom = value;
       });
-      _cameraController?.getMaxZoomLevel().then((value) {
-        _maxAvailableZoom = value;
-      });
-      _currentExposureOffset = 0.0;
-      _cameraController?.getMinExposureOffset().then((value) {
-        _minAvailableExposureOffset = value;
-      });
-      _cameraController?.getMaxExposureOffset().then((value) {
-        _maxAvailableExposureOffset = value;
-      });
+
+      // _cameraController?.getMaxZoomLevel().then((value) {
+      //    _maxAvailableZoom = value;
+      // });
+      //  _currentExposureOffset = 0.0;
+      // _cameraController?.getMinExposureOffset().then((value) {
+      //    _minAvailableExposureOffset = value;
+      // });
+      // _cameraController?.getMaxExposureOffset().then((value) {
+      //    _maxAvailableExposureOffset = value;
+      // });
       _cameraController?.startImageStream(_processCameraImage);
       setState(() {});
     });
@@ -446,6 +448,7 @@ class _MLivelyness7DetectionScreenState
         _isInfoStepCompleted
             ? _buildDetectionBody()
             : M7LivelynessInfoWidget(
+                config: widget.config,
                 onStartTap: () {
                   if (mounted) {
                     setState(
@@ -521,17 +524,19 @@ class _MLivelyness7DetectionScreenState
             bottom: 10,
             left: 0,
             right: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Note:\n${M7StringConstants.label.goodLightingSubText} ${M7StringConstants.label.lookStraightSubText}",
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            )),
+            child: widget.config.m7stringConstants.isNoteVisible
+                ? Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Note:\n${widget.config.m7stringConstants.label.noteText}",
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  )
+                : SizedBox()),
         // Visibility(
         //   visible: _isCaptureButtonVisible,
         //   child: Column(

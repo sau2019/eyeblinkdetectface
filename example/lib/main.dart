@@ -1,8 +1,9 @@
 import 'package:eyeblinkdetectface_example/index.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
